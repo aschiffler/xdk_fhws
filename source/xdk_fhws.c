@@ -1,5 +1,5 @@
 
-#include "XDKAppInfo.h"
+#include "XdkAppInfo.h"
 #undef BCDS_MODULE_ID
 #define BCDS_MODULE_ID  XDK_APP_MODULE_ID_XDK_FHWS
 
@@ -70,11 +70,7 @@ char* MQTT_USERNAME = NULL;
 char* MQTT_PASSWORD = NULL;
 char* TOPIC = NULL;
 
-
-
-
 static CmdProcessor_T *AppCmdProcessor;
-static CmdProcessor_T CmdProcessorHandleServalPAL;
 static uint32_t SysTime = UINT32_C(0);
 
 static MqttSession_T Session;
@@ -386,28 +382,6 @@ void readDataFromFileOnSdCard(const char* filename){
 }
 
 
-/*
-static Retcode_T ServalPalSetup(void)
-{
-	Retcode_T returnValue = RETCODE_OK;
-	returnValue = CmdProcessor_Initialize(&CmdProcessorHandleServalPAL, (char *)"Serval PAL", TASK_PRIORITY_SERVALPAL_CMD_PROC, TASK_STACK_SIZE_SERVALPAL_CMD_PROC, TASK_QUEUE_LEN_SERVALPAL_CMD_PROC);
-	if (RETCODE_OK == returnValue)
-	{
-		returnValue = ServalPal_Initialize(&CmdProcessorHandleServalPAL);
-	}
-	if (RETCODE_OK == returnValue)
-	{
-		returnValue = ServalPalWiFi_Init();
-	}
-	if (RETCODE_OK == returnValue)
-	{
-		ServalPalWiFi_StateChangeInfo_T stateChangeInfo = { SERVALPALWIFI_OPEN, 0 };
-		returnValue = ServalPalWiFi_NotifyWiFiEvent(SERVALPALWIFI_STATE_CHANGE, &stateChangeInfo);
-	}
-	return returnValue;
-}
-*/
-
 static Retcode_T NetworkSetup(void)
 {
 	printf("WLAN_ENTERPRISE: = %d\r\n", typesSensors[7]);
@@ -602,6 +576,7 @@ static void HandleEventConnection(MqttConnectionEstablishedEvent_T connectionDat
 			"\tReused Session Flag: %d\n\r",
 			(int) connectionData.connectReturnCode,
 			(int) connectionData.sessionPresentFlag);
+
 	if (connectionData.connectReturnCode == 0)
 	{
 		retcode_t rc = SubscribeToOwnPublishTopic();
@@ -618,18 +593,19 @@ static void HandleEventConnection(MqttConnectionEstablishedEvent_T connectionDat
 static void HandleEventIncomingPublish(
 		MqttPublishData_T publishData)
 {
-	char published_topic_buffer[COMMON_BUFFER_SIZE];
-	char published_data_buffer[COMMON_BUFFER_SIZE];
+	//char published_topic_buffer[COMMON_BUFFER_SIZE];
+	//char published_data_buffer[COMMON_BUFFER_SIZE];
 	static int incoming_message_count = 0;
 
-	strncpy(published_data_buffer, (const char *)publishData.payload, sizeof(published_data_buffer));
-	strncpy(published_topic_buffer, publishData.topic.start, sizeof(published_topic_buffer));
-
+	//strncpy(published_data_buffer, (const char *)publishData.payload, sizeof(published_data_buffer));
+	//strncpy(published_topic_buffer, publishData.topic.start, sizeof(published_topic_buffer));
+/*
 	printf("#%d, Incoming Published Message:\n\r"
 			"\tTopic: %s\n\r"
 			"\tPayload: \n\r\"\"\"\n\r%s\n\r\"\"\"\n\r", incoming_message_count,
 			published_topic_buffer, published_data_buffer);
-	incoming_message_count++;
+			*/
+	printf("%d",incoming_message_count++);
 }
 
 

@@ -1,6 +1,7 @@
-BootloaderType=AUTO
-FirmwareVersion=00000000
+BootloaderType=Version_1_1_0
+FirmwareVersion=00000001
 HeaderVersion=0100
 ProductClass=0010
 ProductVariant=0000
+SDK=Workbench SDK [3.6.0.201903181303]
 eclipse.preferences.version=1

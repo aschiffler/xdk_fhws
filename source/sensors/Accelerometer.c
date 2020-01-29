@@ -1,4 +1,4 @@
-#include "XDKAppInfo.h"
+#include "XdkAppInfo.h"
 #undef BCDS_MODULE_ID
 #define BCDS_MODULE_ID XDK_APP_MODULE_ID_ACCELEROMETER
 #include "Accelerometer.h"
